@@ -58,6 +58,8 @@ export type DailyForecast = {
   date: string;
   maxTemp: number;
   minTemp: number;
+  avgHumidity: number;
+  weather: WeatherDataPoint['weather'];
 };
 
 type CityData = {
@@ -73,3 +75,9 @@ type CityData = {
     sunrise: number;
     sunset: number;
 };
+
+export type RelevantPlaceType = {
+    display: string;
+    city_name: string;
+    country: string;
+}

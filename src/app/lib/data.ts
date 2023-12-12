@@ -1,7 +1,6 @@
 import 'server-only'
 
 import { WeatherQueryParams, CityTerminal, WeatherApiResponse, DailyForecast } from './definitions' 
-import { ValidCountries } from './enums'
 
 export async function getCitiesData(searchTerm: string) {
     const url = `${process.env.RESERVAMOS_ENDPOINT}?q=${searchTerm}`;
@@ -17,6 +16,16 @@ export async function getCitiesData(searchTerm: string) {
     return filteredData;
 }
 
+export async function getFiveMostRelevantPlacesFromCity(searchTerm: string) { 
+    const cities = await getCitiesData(searchTerm)
+    if (!cities.length) return []
+
+    const fiveMostRelevantPlaces = cities.sort((a: CityTerminal, b: CityTerminal) => {
+        return parseFloat(a.popularity) - parseFloat(b.popularity)
+    }).slice(0, 5)
+
+    return fiveMostRelevantPlaces
+}
 
 
 async function extractCoordsFromCity(city: CityTerminal) {
@@ -73,7 +82,6 @@ function getNextFiveDaysWeather(weatherData: WeatherApiResponse): DailyForecast[
         const nextDay = new Date(today);
         nextDay.setDate(today.getDate() + i);
 
-        
         const dateStr = nextDay.toISOString().split('T')[0];
 
         const dailyForecast = weatherData.list.filter(entry => 
@@ -84,11 +92,17 @@ function getNextFiveDaysWeather(weatherData: WeatherApiResponse): DailyForecast[
             const dailyTemps = dailyForecast.map(forecast => forecast.main.temp);
             const maxTemp = Math.max(...dailyTemps);
             const minTemp = Math.min(...dailyTemps);
+            const weather = dailyForecast[0].weather[0].main;
+
+            const dailyHumidities = dailyForecast.map(forecast => forecast.main.temp);
+            const avgHumidity = dailyHumidities.reduce((a, b) => a + b, 0) / dailyHumidities.length;
 
             nextFiveDays.push({
                 date: dateStr,
                 maxTemp,
-                minTemp
+                minTemp,
+                avgHumidity,
+                weather,
             });
         }
     }
