@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Weather Forecast App
 
-## Getting Started
+Este proyecto es una aplicación web que proporciona pronósticos del tiempo y datos relevantes de ciudades. Utiliza Next.js, React y una variedad de APIs para obtener y mostrar información meteorológica.
 
-First, run the development server:
+## Características
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Búsqueda de ciudades para obtener pronósticos del tiempo.
+- Listado de los cinco lugares más relevantes basados en la popularidad.
+- Visualización de pronósticos del tiempo para los próximos cinco días.
+- Tabla de colores para representar diferentes temperaturas.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Estructura del Proyecto
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+El proyecto se compone principalmente de los siguientes componentes y módulos:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- `Home`: Componente principal que maneja la página de inicio y la búsqueda.
+- `WeatherForecastList`: Muestra el pronóstico del tiempo y los lugares relevantes.
+- `Search`: Un componente para realizar búsquedas.
+- `WeatherCard`, `CityNotFound`, `RelevantPlace`: Componentes para mostrar diferentes tipos de datos.
+- `getWeatherFromCity`, `getFiveMostRelevantPlacesFromCity`: Funciones para obtener datos desde APIs externas.
 
-## Learn More
+## Instalación y Configuración
 
-To learn more about Next.js, take a look at the following resources:
+### Prerrequisitos
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Node.js
+- npm o yarn
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Pasos de Instalación
 
-## Deploy on Vercel
+1. Clonar el repositorio.
+2. Instalar las dependencias: `npm install` o `yarn install`.
+3. Configurar las variables de entorno (`.env`):
+   - `RESERVAMOS_ENDPOINT`: Endpoint para la API de búsqueda de ciudades.
+   - `OPENWEATHERMAP_ENDPOINT`: Endpoint para la API del tiempo.
+   - `OPENWEATHERMAP_API_KEY`: Clave API para OpenWeatherMap.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Ejecutar la Aplicación
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Ejecutar `npm run dev` o `yarn dev` para iniciar la aplicación en modo desarrollo.
+### Link de la aplicación:
+- https://reservamos-mauve.vercel.app/
+<img width="1437" alt="monterreydesktpo" src="https://github.com/Hermestech/reservamos/assets/64867364/d688dfb9-7014-4d6d-83dc-1f3f4bc289cb">
+
+<img width="468" alt="monterrey tablet" src="https://github.com/Hermestech/reservamos/assets/64867364/be97fbf1-c881-4b56-b440-f2fc0115da95">
+<img width="399" alt="mobile" src="https://github.com/Hermestech/reservamos/assets/64867364/8553e380-d4a3-4e4f-ad6e-aebe511c8700">
+
